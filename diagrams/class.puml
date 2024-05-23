@@ -1,0 +1,91 @@
+@startuml
+interface Visitor {
+    + visit(Number) : void
+    + visit(Variable) : void
+    + visit(SingleOperation) : void
+}
+
+class PrintVisitor implements Visitor{
+    + visit(Number) : void
+    + visit(Variable) : void
+    + visit(SingleOperation) : void
+}
+
+class GetVariablesVisitor implements Visitor{
+    + visit(Number) : void
+    + visit(Variable) : void
+    + visit(SingleOperation) : void
+}
+
+Visitable o- Visitor
+
+interface Visitable {
+    + accept(Visitor) : void
+}
+
+interface Function extends Visitable{
+}
+
+interface SingleOperation extends Function{
+    + getOperand() : Function
+    + getLeftSymbol() : String
+    + getRightSymbol() : String
+}
+
+interface DoubleOperation extends Function{
+    + getOperands() : Function[]
+    + getLeftSymbol() : String
+    + getRightSymbol() : String
+    + getMiddleSymbol() : String
+}
+
+
+class Exponent implements SingleOperation{
+    - Function operand
+    - int order
+    + getLeftSymbol() : String
+    + getRightSymbol() : String
+}
+
+class Root implements SingleOperation{
+    - Function operand
+    - int order
+    + getLeftSymbol() : String
+    + getRightSymbol() : String
+}
+
+class Absolute implements SingleOperation{
+    - Function operand
+    + getLeftSymbol() : String
+    + getRightSymbol() : String
+}
+
+class Parenthesis implements SingleOperation{
+    - Function operand
+    + getLeftSymbol() : String
+    + getRightSymbol() : String
+}
+
+class Sum implements DoubleOperation{
+    - Function[] operands
+    - String stringRepresentation
+}
+
+class Subtraction implements DoubleOperation{
+    - Function[] operands
+    - String stringRepresentation
+}
+
+class Number implements Function{
+    -double value
+}
+
+class Variable implements Function{
+    - String name
+    + setValue(double) : void
+    + hasValue() : boolean
+}
+
+
+
+@enduml

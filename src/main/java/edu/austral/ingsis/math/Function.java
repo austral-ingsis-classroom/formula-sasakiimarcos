@@ -1,3 +1,5 @@
 package edu.austral.ingsis.math;
 
-public interface Function {}
+public interface Function extends Visitable {
+    String getSymbol();
+}
