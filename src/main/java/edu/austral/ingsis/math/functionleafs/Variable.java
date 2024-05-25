@@ -33,4 +33,8 @@ public class Variable implements Value {
         }
         return value;
     }
+
+    public void setValue(Double value) {
+        this.value = value;
+    }
 }
