@@ -45,7 +45,7 @@ class UnaryOperation implements Function{
     + solve() : double
 }
 
-UnaryOperation o-- UnarySolver
+UnaryOperation *-- UnarySolver
 
 interface UnarySolver{
     + solve(Function) : double
@@ -71,7 +71,7 @@ class BinaryOperation implements Function{
     + solve() : double
 }
 
-BinaryOperation o-- BinarySolver
+BinaryOperation *-- BinarySolver
 
 interface BinarySolver{
     + solve(Function, Function) : double
