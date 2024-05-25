@@ -3,7 +3,9 @@ package edu.austral.ingsis.math.functionleafs;
 import edu.austral.ingsis.math.Function;
 import edu.austral.ingsis.math.visitors.Visitor;
 
-public class Variable implements Function {
+import java.util.NoSuchElementException;
+
+public class Variable implements Value {
     private final String name;
     private Double value;
 
@@ -22,5 +24,13 @@ public class Variable implements Function {
             return name;
         }
         return value.toString();
+    }
+
+    @Override
+    public double solve() {
+        if (value == null) {
+            throw new NoSuchElementException("Variable " + name + " has no value");
+        }
+        return value;
     }
 }

@@ -1,0 +1,54 @@
+@startuml
+interface Visitor {
+    + visit(Number) : void
+    + visit(Variable) : void
+    + visit(SingleOperation) : void
+}
+
+class PrintVisitor implements Visitor{
+    + visit(Number) : void
+    + visit(Variable) : void
+    + visit(SingleOperation) : void
+}
+
+class GetVariablesVisitor implements Visitor{
+    + visit(Number) : void
+    + visit(Variable) : void
+    + visit(SingleOperation) : void
+}
+
+Visitable o- Visitor
+
+interface Visitable {
+    + accept(Visitor) : void
+}
+
+interface Function extends Visitable{
+}
+
+class SingleOperation implements Function{
+    + getOperand() : Function
+    + getLeftSymbol() : String
+    + getRightSymbol() : String
+}
+
+class DoubleOperation implements Function{
+    + getFirstOperand() : Function
+    + getSecondOperand() : Function
+    + getLeftSymbol() : String
+    + getRightSymbol() : String
+    + getMiddleSymbol() : String
+}
+
+
+class Number implements Function{
+    -double value
+}
+
+class Variable implements Function{
+    - String name
+    + setValue(double) : void
+    + hasValue() : boolean
+}
+
+@enduml

@@ -33,14 +33,15 @@ interface SingleOperation extends Function{
 }
 
 interface DoubleOperation extends Function{
-    + getOperands() : Function[]
+    + getFirstOperand() : Function
+    + getSecondOperand() : Function
     + getLeftSymbol() : String
     + getRightSymbol() : String
     + getMiddleSymbol() : String
 }
 
 
-class Exponent implements SingleOperation{
+class Exponentiation implements SingleOperation{
     - Function operand
     - int order
     + getLeftSymbol() : String
@@ -66,13 +67,27 @@ class Parenthesis implements SingleOperation{
     + getRightSymbol() : String
 }
 
-class Sum implements DoubleOperation{
-    - Function[] operands
+class Addition implements DoubleOperation{
+    - Function firstOperand
+    - Function secondOperand
     - String stringRepresentation
 }
 
 class Subtraction implements DoubleOperation{
-    - Function[] operands
+    - Function firstOperand
+    - Function secondOperand
+    - String stringRepresentation
+}
+
+class Multiplication implements DoubleOperation{
+    - Function firstOperand
+    - Function secondOperand
+    - String stringRepresentation
+}
+
+class Division implements DoubleOperation{
+    - Function firstOperand
+    - Function secondOperand
     - String stringRepresentation
 }
 

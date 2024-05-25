@@ -3,7 +3,7 @@ package edu.austral.ingsis.math.functionleafs;
 import edu.austral.ingsis.math.Function;
 import edu.austral.ingsis.math.visitors.Visitor;
 
-public class Number implements Function {
+public class Number implements Value {
     private final double value;
 
     public Number(double value) {
@@ -17,5 +17,10 @@ public class Number implements Function {
     @Override
     public String getSymbol() {
         return value + "";
+    }
+
+    @Override
+    public double solve() {
+        return value;
     }
 }

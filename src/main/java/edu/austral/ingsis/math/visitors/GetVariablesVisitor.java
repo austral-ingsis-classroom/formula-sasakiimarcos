@@ -1,42 +1,43 @@
 package edu.austral.ingsis.math.visitors;
 
+import edu.austral.ingsis.math.functioncomposites.dual.DoubleOperation;
 import edu.austral.ingsis.math.functioncomposites.single.SingleOperation;
 import edu.austral.ingsis.math.functionleafs.Number;
-import edu.austral.ingsis.math.functioncomposites.dual.DoubleOperation;
 import edu.austral.ingsis.math.functionleafs.Variable;
 
-public class PrinterVisitor implements Visitor{
-    private StringBuilder result;
+import java.util.ArrayList;
+import java.util.List;
 
-    public PrinterVisitor() {
-        result = new StringBuilder();
+public class GetVariablesVisitor implements Visitor{
+
+    private List<String> variables;
+
+    public GetVariablesVisitor() {
+        this.variables = new ArrayList<>();
     }
 
     @Override
     public void visit(Number number) {
-        result.append(number.getSymbol());
+        return;
     }
 
     @Override
     public void visit(Variable variable) {
-        result.append(variable.getSymbol());
+        variables.add(variable.getSymbol());
     }
 
     @Override
     public void visit(DoubleOperation doubleOperation) {
         doubleOperation.getLeftOperand().accept(this);
-        result.append(doubleOperation.getMiddleSymbol());
         doubleOperation.getRightOperand().accept(this);
     }
 
     @Override
     public void visit(SingleOperation singleOperation) {
-        result.append(singleOperation.getLeftSymbol());
         singleOperation.getOperand().accept(this);
-        result.append(singleOperation.getRightSymbol());
     }
 
-    public String getResult() {
-        return result.toString();
+    public List<String> getVariables() {
+        return variables;
     }
 }
