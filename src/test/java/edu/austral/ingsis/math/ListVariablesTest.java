@@ -10,10 +10,9 @@ import java.util.List;
 import edu.austral.ingsis.math.functioncomposites.dual.factories.*;
 import edu.austral.ingsis.math.functioncomposites.single.factories.Absolute;
 import edu.austral.ingsis.math.functioncomposites.single.factories.Parenthesis;
-import edu.austral.ingsis.math.functionleafs.Number;
+import edu.austral.ingsis.math.functionleafs.Numeral;
 import edu.austral.ingsis.math.functionleafs.Variable;
 import edu.austral.ingsis.math.visitors.GetVariablesVisitor;
-import org.junit.Test;
 
 public class ListVariablesTest {
 
@@ -21,7 +20,7 @@ public class ListVariablesTest {
   @Test
   public void shouldListVariablesFunction1() {
     Addition additionFactory = new Addition();
-    Function case1 = additionFactory.createDoubleOperation(new Number(1), new Number(6));
+    Function case1 = additionFactory.createDoubleOperation(new Numeral(1), new Numeral(6));
     GetVariablesVisitor visitor = new GetVariablesVisitor();
     case1.accept(visitor);
     final List<String> result = visitor.getVariables();
@@ -32,7 +31,7 @@ public class ListVariablesTest {
   @Test
   public void shouldListVariablesFunction2() {
     Division divisionFactory = new Division();
-    Function case2 = divisionFactory.createDoubleOperation(new Number(12), new Variable("div"));
+    Function case2 = divisionFactory.createDoubleOperation(new Numeral(12), new Variable("div"));
     GetVariablesVisitor visitor = new GetVariablesVisitor();
     case2.accept(visitor);
     final List<String> result = visitor.getVariables();
@@ -48,7 +47,7 @@ public class ListVariablesTest {
     Function case3 =
         multiplicationFactory.createDoubleOperation(
             parenthesisFactory.createSingleOperation(
-                divisionFactory.createDoubleOperation(new Number(9), new Variable("x"))),
+                divisionFactory.createDoubleOperation(new Numeral(9), new Variable("x"))),
             new Variable("y"));
     GetVariablesVisitor visitor = new GetVariablesVisitor();
     case3.accept(visitor);
@@ -65,7 +64,7 @@ public class ListVariablesTest {
     Function case4 =
         exponentialFactory.createDoubleOperation(
             parenthesisFactory.createSingleOperation(
-                divisionFactory.createDoubleOperation(new Number(27), new Variable("a"))),
+                divisionFactory.createDoubleOperation(new Numeral(27), new Variable("a"))),
             new Variable("b"));
     GetVariablesVisitor visitor = new GetVariablesVisitor();
     case4.accept(visitor);
@@ -80,7 +79,7 @@ public class ListVariablesTest {
     Division divisionFactory = new Division();
     Function case5 =
         exponentialFactory.createDoubleOperation(
-            new Variable("z"), divisionFactory.createDoubleOperation(new Number(1), new Number(2)));
+            new Variable("z"), divisionFactory.createDoubleOperation(new Numeral(1), new Numeral(2)));
     GetVariablesVisitor visitor = new GetVariablesVisitor();
     case5.accept(visitor);
     final List<String> result = visitor.getVariables();
@@ -94,7 +93,7 @@ public class ListVariablesTest {
     Subtraction subtractionFactory = new Subtraction();
     Function case6 =
         subtractionFactory.createDoubleOperation(
-            absoluteFactory.createSingleOperation(new Variable("value")), new Number(8));
+            absoluteFactory.createSingleOperation(new Variable("value")), new Numeral(8));
     GetVariablesVisitor visitor = new GetVariablesVisitor();
     case6.accept(visitor);
     final List<String> result = visitor.getVariables();
@@ -108,7 +107,7 @@ public class ListVariablesTest {
     Subtraction subtractionFactory = new Subtraction();
     Function case7 =
             subtractionFactory.createDoubleOperation(
-                    absoluteFactory.createSingleOperation(new Variable("value")), new Number(8));
+                    absoluteFactory.createSingleOperation(new Variable("value")), new Numeral(8));
     GetVariablesVisitor visitor = new GetVariablesVisitor();
     case7.accept(visitor);
     final List<String> result = visitor.getVariables();
@@ -124,8 +123,8 @@ public class ListVariablesTest {
     Function case8 =
         multiplicationFactory.createDoubleOperation(
             parenthesisFactory.createSingleOperation(
-                subtractionFactory.createDoubleOperation(new Number(5), new Variable("i"))),
-            new Number(8));
+                subtractionFactory.createDoubleOperation(new Numeral(5), new Variable("i"))),
+            new Numeral(8));
     GetVariablesVisitor visitor = new GetVariablesVisitor();
     case8.accept(visitor);
     final List<String> result = visitor.getVariables();

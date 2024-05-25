@@ -2,7 +2,7 @@ package edu.austral.ingsis.math.visitors;
 
 import edu.austral.ingsis.math.functioncomposites.dual.DoubleOperation;
 import edu.austral.ingsis.math.functioncomposites.single.SingleOperation;
-import edu.austral.ingsis.math.functionleafs.Number;
+import edu.austral.ingsis.math.functionleafs.Numeral;
 import edu.austral.ingsis.math.functionleafs.Variable;
 
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ public class GetVariablesVisitor implements Visitor{
     }
 
     @Override
-    public void visit(Number number) {
+    public void visit(Numeral numeral) {
         return;
     }
 

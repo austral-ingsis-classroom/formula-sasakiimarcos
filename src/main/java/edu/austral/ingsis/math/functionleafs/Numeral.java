@@ -1,12 +1,11 @@
 package edu.austral.ingsis.math.functionleafs;
 
-import edu.austral.ingsis.math.Function;
 import edu.austral.ingsis.math.visitors.Visitor;
 
-public class Number implements Value {
+public class Numeral implements Value {
     private final double value;
 
-    public Number(double value) {
+    public Numeral(double value) {
         this.value = value;
     }
     @Override
@@ -16,7 +15,7 @@ public class Number implements Value {
 
     @Override
     public String getSymbol() {
-        return value + "";
+        return String.format("%.0f", value);
     }
 
     @Override

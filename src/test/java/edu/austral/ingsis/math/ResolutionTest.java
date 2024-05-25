@@ -1,5 +1,9 @@
 package edu.austral.ingsis.math;
 
+import edu.austral.ingsis.math.functioncomposites.dual.factories.*;
+import edu.austral.ingsis.math.functioncomposites.single.factories.Absolute;
+import edu.austral.ingsis.math.functioncomposites.single.factories.Parenthesis;
+import edu.austral.ingsis.math.functionleafs.Numeral;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -10,56 +14,79 @@ public class ResolutionTest {
   /** Case 1 + 6 */
   @Test
   public void shouldResolveSimpleFunction1() {
-    final Double result = 7d;
-
+    Addition additionFactory = new Addition();
+    Function function = additionFactory.createDoubleOperation(new Numeral(1), new Numeral(6));
+    final Double result = function.solve();
     assertThat(result, equalTo(7d));
   }
 
   /** Case 12 / 2 */
   @Test
   public void shouldResolveSimpleFunction2() {
-    final Double result = 6d;
-
+    Division division = new Division();
+    Function function = division.createDoubleOperation(new Numeral(12), new Numeral(2));
+    final Double result = function.solve();
     assertThat(result, equalTo(6d));
   }
 
   /** Case (9 / 2) * 3 */
   @Test
   public void shouldResolveSimpleFunction3() {
-    final Double result = 13.5;
-
+    Division division = new Division();
+    Multiplication multiplication = new Multiplication();
+    Parenthesis parenthesis = new Parenthesis();
+    Function function =
+        multiplication.createDoubleOperation(
+            parenthesis.createSingleOperation(
+                division.createDoubleOperation(new Numeral(9), new Numeral(2))),
+            new Numeral(3));
+    final Double result = function.solve();
     assertThat(result, equalTo(13.5d));
   }
 
   /** Case (27 / 6) ^ 2 */
   @Test
   public void shouldResolveSimpleFunction4() {
-    final Double result = 20.25;
-
+    Division division = new Division();
+    Exponential exponential = new Exponential();
+    Parenthesis parenthesis = new Parenthesis();
+    Function function =
+        exponential.createDoubleOperation(
+            parenthesis.createSingleOperation(
+                division.createDoubleOperation(new Numeral(27), new Numeral(6))),
+            new Numeral(2));
+    final Double result = function.solve();
     assertThat(result, equalTo(20.25d));
   }
 
   /** Case 36 ^ (1/2) */
   @Test
   public void shouldResolveSimpleFunction5() {
-    final Double result = 6d;
-
+    Exponential exponential = new Exponential();
+    Division division = new Division();
+    Parenthesis parenthesis = new Parenthesis();
+    Function function =
+        exponential.createDoubleOperation(
+            new Numeral(36), parenthesis.createSingleOperation(division.createDoubleOperation(new Numeral(1), new Numeral(2))));
+    final Double result = function.solve();
     assertThat(result, equalTo(6d));
   }
 
   /** Case |136| */
   @Test
   public void shouldResolveSimpleFunction6() {
-    final Double result = 136d;
-
+    Absolute absolute = new Absolute();
+    Function function = absolute.createSingleOperation(new Numeral(136));
+    final Double result = function.solve();
     assertThat(result, equalTo(136d));
   }
 
   /** Case |-136| */
   @Test
   public void shouldResolveSimpleFunction7() {
-    final Double result = 136d;
-
+    Absolute absolute = new Absolute();
+    Function function = absolute.createSingleOperation(new Numeral(-136));
+    final Double result = function.solve();
     assertThat(result, equalTo(136d));
   }
 
@@ -67,7 +94,14 @@ public class ResolutionTest {
   @Test
   public void shouldResolveSimpleFunction8() {
     final Double result = 0d;
-
+    Parenthesis parenthesis = new Parenthesis();
+    Subtraction subtraction = new Subtraction();
+    Multiplication multiplication = new Multiplication();
+    Function function =
+        multiplication.createDoubleOperation(
+            parenthesis.createSingleOperation(
+                subtraction.createDoubleOperation(new Numeral(5), new Numeral(5))),
+            new Numeral(8));
     assertThat(result, equalTo(0d));
   }
 }

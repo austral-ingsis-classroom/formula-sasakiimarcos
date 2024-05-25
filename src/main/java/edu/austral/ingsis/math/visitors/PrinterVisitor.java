@@ -1,7 +1,7 @@
 package edu.austral.ingsis.math.visitors;
 
 import edu.austral.ingsis.math.functioncomposites.single.SingleOperation;
-import edu.austral.ingsis.math.functionleafs.Number;
+import edu.austral.ingsis.math.functionleafs.Numeral;
 import edu.austral.ingsis.math.functioncomposites.dual.DoubleOperation;
 import edu.austral.ingsis.math.functionleafs.Variable;
 
@@ -13,8 +13,8 @@ public class PrinterVisitor implements Visitor{
     }
 
     @Override
-    public void visit(Number number) {
-        result.append(number.getSymbol());
+    public void visit(Numeral numeral) {
+        result.append(numeral.getSymbol());
     }
 
     @Override

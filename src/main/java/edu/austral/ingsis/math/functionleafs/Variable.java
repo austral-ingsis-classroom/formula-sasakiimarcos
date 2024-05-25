@@ -23,7 +23,7 @@ public class Variable implements Value {
         if (value == null) {
             return name;
         }
-        return value.toString();
+        return String.format("%.0f", value);
     }
 
     @Override
