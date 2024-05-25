@@ -1,11 +1,12 @@
 package edu.austral.ingsis.math;
 
+import org.junit.jupiter.api.Test;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.empty;
 
 import java.util.List;
-
 import edu.austral.ingsis.math.functioncomposites.dual.factories.*;
 import edu.austral.ingsis.math.functioncomposites.single.factories.Absolute;
 import edu.austral.ingsis.math.functioncomposites.single.factories.Parenthesis;
