@@ -2,19 +2,29 @@
 interface Visitor {
     + visit(Number) : void
     + visit(Variable) : void
-    + visit(SingleOperation) : void
+    + visit(UnaryOperation) : void
+    + visit(BinaryOperation) : void
 }
 
 class PrintVisitor implements Visitor{
     + visit(Number) : void
     + visit(Variable) : void
-    + visit(SingleOperation) : void
+    + visit(UnaryOperation) : void
+    + visit(BinaryOperation) : void
 }
 
 class GetVariablesVisitor implements Visitor{
     + visit(Number) : void
     + visit(Variable) : void
-    + visit(SingleOperation) : void
+    + visit(UnaryOperation) : void
+    + visit(BinaryOperation) : void
+}
+
+class SetVariableVisitor implements Visitor{
+    + visit(Number) : void
+    + visit(Variable) : void
+    + visit(UnaryOperation) : void
+    + visit(BinaryOperation) : void
 }
 
 Visitable o- Visitor
@@ -24,31 +34,84 @@ interface Visitable {
 }
 
 interface Function extends Visitable{
+    + solve() : double
 }
 
-class SingleOperation implements Function{
+class UnaryOperation implements Function{
+    + getLeftSymbol() : String
+    + getRightSymbol() : String
     + getOperand() : Function
-    + getLeftSymbol() : String
-    + getRightSymbol() : String
+    + accept(Visitor visitor) : void
+    + solve() : double
 }
 
-class DoubleOperation implements Function{
-    + getFirstOperand() : Function
-    + getSecondOperand() : Function
-    + getLeftSymbol() : String
-    + getRightSymbol() : String
+UnaryOperation o-- UnarySolver
+
+interface UnarySolver{
+    + solve(Function) : double
+}
+
+class Absolute implements UnarySolver{
+    + solve(Function) : double
+}
+
+class Root implements UnarySolver{
+    + solve(Function) : double
+}
+
+class Parentheses implements UnarySolver{
+    + solve(Function) : double
+}
+
+class BinaryOperation implements Function{
+    + accept(Visitor visitor) : void
     + getMiddleSymbol() : String
+    + getLeftOperand() : Function
+    + getRightOperand() : Function
+    + solve() : double
 }
 
+BinaryOperation o-- BinarySolver
 
-class Number implements Function{
+interface BinarySolver{
+    + solve(Function, Function) : double
+}
+
+class Addition implements BinarySolver{
+    + solve(Function, Function) : double
+}
+
+class Subtraction implements BinarySolver{
+    + solve(Function, Function) : double
+}
+
+class Multiplication implements BinarySolver{
+    + solve(Function, Function) : double
+}
+
+class Division implements BinarySolver{
+    + solve(Function, Function) : double
+}
+
+class Exponentiation implements BinarySolver{
+    + solve(Function, Function) : double
+}
+
+interface Value extends Function{
+    + getSymbol() : String
+}
+
+class Number implements Value{
     -double value
+    + solve() : double
+    + getSymbol() : String
 }
 
-class Variable implements Function{
+class Variable implements Value{
     - String name
     + setValue(double) : void
-    + hasValue() : boolean
+    + getSymbol() : String
+    + solve() : double
 }
 
 @enduml
