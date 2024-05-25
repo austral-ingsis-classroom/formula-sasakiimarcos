@@ -5,8 +5,8 @@ import edu.austral.ingsis.math.functioncomposites.unary.SingleOperation;
 import edu.austral.ingsis.math.functioncomposites.unary.solvers.RootSolver;
 
 public class Root implements UnaryOperationFactory {
-    @Override
-    public SingleOperation createSingleOperation(Function operand) {
-        return new SingleOperation(operand, "√", "", new RootSolver());
-    }
+  @Override
+  public SingleOperation createSingleOperation(Function operand) {
+    return new SingleOperation(operand, "√", "", new RootSolver());
+  }
 }

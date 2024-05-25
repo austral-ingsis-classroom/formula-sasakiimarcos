@@ -1,18 +1,17 @@
 package edu.austral.ingsis.math;
 
-import org.junit.jupiter.api.Test;
-
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.empty;
 
-import java.util.List;
 import edu.austral.ingsis.math.functioncomposites.binary.factories.*;
 import edu.austral.ingsis.math.functioncomposites.unary.factories.Absolute;
 import edu.austral.ingsis.math.functioncomposites.unary.factories.Parenthesis;
 import edu.austral.ingsis.math.functionleafs.Numeral;
 import edu.austral.ingsis.math.functionleafs.Variable;
 import edu.austral.ingsis.math.visitors.GetVariablesVisitor;
+import java.util.List;
+import org.junit.jupiter.api.Test;
 
 public class ListVariablesTest {
 
@@ -79,7 +78,8 @@ public class ListVariablesTest {
     Division divisionFactory = new Division();
     Function case5 =
         exponentialFactory.createDoubleOperation(
-            new Variable("z"), divisionFactory.createDoubleOperation(new Numeral(1), new Numeral(2)));
+            new Variable("z"),
+            divisionFactory.createDoubleOperation(new Numeral(1), new Numeral(2)));
     GetVariablesVisitor visitor = new GetVariablesVisitor();
     case5.accept(visitor);
     final List<String> result = visitor.getVariables();
@@ -106,8 +106,8 @@ public class ListVariablesTest {
     Absolute absoluteFactory = new Absolute();
     Subtraction subtractionFactory = new Subtraction();
     Function case7 =
-            subtractionFactory.createDoubleOperation(
-                    absoluteFactory.createSingleOperation(new Variable("value")), new Numeral(8));
+        subtractionFactory.createDoubleOperation(
+            absoluteFactory.createSingleOperation(new Variable("value")), new Numeral(8));
     GetVariablesVisitor visitor = new GetVariablesVisitor();
     case7.accept(visitor);
     final List<String> result = visitor.getVariables();

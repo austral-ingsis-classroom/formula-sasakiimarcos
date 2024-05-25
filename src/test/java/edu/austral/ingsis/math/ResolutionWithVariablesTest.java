@@ -1,18 +1,17 @@
 package edu.austral.ingsis.math;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 import edu.austral.ingsis.math.functioncomposites.binary.factories.*;
 import edu.austral.ingsis.math.functioncomposites.unary.factories.Absolute;
 import edu.austral.ingsis.math.functioncomposites.unary.factories.Parenthesis;
 import edu.austral.ingsis.math.functionleafs.Numeral;
 import edu.austral.ingsis.math.functionleafs.Variable;
 import edu.austral.ingsis.math.visitors.SetVariablesVisitor;
-import org.junit.jupiter.api.Test;
-
 import java.util.HashMap;
 import java.util.Map;
-
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.MatcherAssert.assertThat;
+import org.junit.jupiter.api.Test;
 
 public class ResolutionWithVariablesTest {
 
@@ -85,7 +84,9 @@ public class ResolutionWithVariablesTest {
     Parenthesis parenthesisFactory = new Parenthesis();
     Function case5 =
         exponentialFactory.createDoubleOperation(
-            new Variable("z"), parenthesisFactory.createSingleOperation(divisionFactory.createDoubleOperation(new Numeral(1), new Numeral(2))));
+            new Variable("z"),
+            parenthesisFactory.createSingleOperation(
+                divisionFactory.createDoubleOperation(new Numeral(1), new Numeral(2))));
     SetVariablesVisitor visitor = new SetVariablesVisitor(variables);
     case5.accept(visitor);
     final Double result = case5.solve();

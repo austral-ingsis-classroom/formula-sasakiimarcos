@@ -1,13 +1,13 @@
 package edu.austral.ingsis.math;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 import edu.austral.ingsis.math.functioncomposites.binary.factories.*;
 import edu.austral.ingsis.math.functioncomposites.unary.factories.Absolute;
 import edu.austral.ingsis.math.functioncomposites.unary.factories.Parenthesis;
 import edu.austral.ingsis.math.functionleafs.Numeral;
 import org.junit.jupiter.api.Test;
-
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ResolutionTest {
 
@@ -67,7 +67,9 @@ public class ResolutionTest {
     Parenthesis parenthesis = new Parenthesis();
     Function function =
         exponential.createDoubleOperation(
-            new Numeral(36), parenthesis.createSingleOperation(division.createDoubleOperation(new Numeral(1), new Numeral(2))));
+            new Numeral(36),
+            parenthesis.createSingleOperation(
+                division.createDoubleOperation(new Numeral(1), new Numeral(2))));
     final Double result = function.solve();
     assertThat(result, equalTo(6d));
   }

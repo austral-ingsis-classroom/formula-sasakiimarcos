@@ -4,5 +4,5 @@ import edu.austral.ingsis.math.Function;
 import edu.austral.ingsis.math.functioncomposites.binary.BinaryOperation;
 
 public interface BinaryOperationFactory {
-    BinaryOperation createDoubleOperation(Function function1, Function function2);
+  BinaryOperation createDoubleOperation(Function function1, Function function2);
 }

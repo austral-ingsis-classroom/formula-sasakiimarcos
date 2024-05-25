@@ -4,8 +4,8 @@ import edu.austral.ingsis.math.Function;
 
 public class DivisionSolver implements BinarySolver {
 
-    @Override
-    public double solve(Function function1, Function function2) {
-        return function1.solve() /  function2.solve();
-    }
+  @Override
+  public double solve(Function function1, Function function2) {
+    return function1.solve() / function2.solve();
+  }
 }
