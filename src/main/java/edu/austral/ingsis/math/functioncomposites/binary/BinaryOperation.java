@@ -1,16 +1,16 @@
-package edu.austral.ingsis.math.functioncomposites.dual;
+package edu.austral.ingsis.math.functioncomposites.binary;
 
 import edu.austral.ingsis.math.Function;
-import edu.austral.ingsis.math.functioncomposites.dual.solvers.DoubleSolver;
+import edu.austral.ingsis.math.functioncomposites.binary.solvers.BinarySolver;
 import edu.austral.ingsis.math.visitors.Visitor;
 
-public class DoubleOperation implements Function {
+public class BinaryOperation implements Function {
     private final Function leftOperand;
     private final Function rightOperand;
     private final String symbol;
-    private final DoubleSolver solver;
+    private final BinarySolver solver;
 
-    public DoubleOperation(Function leftOperand, Function rightOperand, String symbol, DoubleSolver solver) {
+    public BinaryOperation(Function leftOperand, Function rightOperand, String symbol, BinarySolver solver) {
         this.leftOperand = leftOperand;
         this.rightOperand = rightOperand;
         this.symbol = symbol;

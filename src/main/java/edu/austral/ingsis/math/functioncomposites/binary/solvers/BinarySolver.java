@@ -1,7 +1,7 @@
-package edu.austral.ingsis.math.functioncomposites.dual.solvers;
+package edu.austral.ingsis.math.functioncomposites.binary.solvers;
 
 import edu.austral.ingsis.math.Function;
 
-public interface DoubleSolver {
+public interface BinarySolver {
     double solve(Function function1, Function function2);
 }

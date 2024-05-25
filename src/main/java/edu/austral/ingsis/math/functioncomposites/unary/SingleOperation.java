@@ -1,20 +1,20 @@
-package edu.austral.ingsis.math.functioncomposites.single;
+package edu.austral.ingsis.math.functioncomposites.unary;
 
 import edu.austral.ingsis.math.Function;
-import edu.austral.ingsis.math.functioncomposites.single.solvers.SingleSolver;
+import edu.austral.ingsis.math.functioncomposites.unary.solvers.UnarySolver;
 import edu.austral.ingsis.math.visitors.Visitor;
 
 public class SingleOperation implements Function {
     private final Function operand;
     private final String leftSymbol;
     private final String rightSymbol;
-    private final SingleSolver singleSolver;
+    private final UnarySolver unarySolver;
 
-    public SingleOperation(Function operand, String leftSymbol, String rightSymbol, SingleSolver singleSolver) {
+    public SingleOperation(Function operand, String leftSymbol, String rightSymbol, UnarySolver unarySolver) {
         this.operand = operand;
         this.leftSymbol = leftSymbol;
         this.rightSymbol = rightSymbol;
-        this.singleSolver = singleSolver;
+        this.unarySolver = unarySolver;
     }
 
     public String getLeftSymbol() {
@@ -35,6 +35,6 @@ public class SingleOperation implements Function {
 
     @Override
     public double solve() {
-        return singleSolver.solve(operand);
+        return unarySolver.solve(operand);
     }
 }

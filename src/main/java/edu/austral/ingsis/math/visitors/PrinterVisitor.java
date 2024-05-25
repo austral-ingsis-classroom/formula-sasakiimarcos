@@ -1,8 +1,8 @@
 package edu.austral.ingsis.math.visitors;
 
-import edu.austral.ingsis.math.functioncomposites.single.SingleOperation;
+import edu.austral.ingsis.math.functioncomposites.unary.SingleOperation;
 import edu.austral.ingsis.math.functionleafs.Numeral;
-import edu.austral.ingsis.math.functioncomposites.dual.DoubleOperation;
+import edu.austral.ingsis.math.functioncomposites.binary.BinaryOperation;
 import edu.austral.ingsis.math.functionleafs.Variable;
 
 public class PrinterVisitor implements Visitor{
@@ -23,10 +23,10 @@ public class PrinterVisitor implements Visitor{
     }
 
     @Override
-    public void visit(DoubleOperation doubleOperation) {
-        doubleOperation.getLeftOperand().accept(this);
-        result.append(doubleOperation.getMiddleSymbol());
-        doubleOperation.getRightOperand().accept(this);
+    public void visit(BinaryOperation binaryOperation) {
+        binaryOperation.getLeftOperand().accept(this);
+        result.append(binaryOperation.getMiddleSymbol());
+        binaryOperation.getRightOperand().accept(this);
     }
 
     @Override

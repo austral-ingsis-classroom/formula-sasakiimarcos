@@ -1,8 +1,8 @@
 package edu.austral.ingsis.math;
 
-import edu.austral.ingsis.math.functioncomposites.dual.factories.*;
-import edu.austral.ingsis.math.functioncomposites.single.factories.Absolute;
-import edu.austral.ingsis.math.functioncomposites.single.factories.Parenthesis;
+import edu.austral.ingsis.math.functioncomposites.binary.factories.*;
+import edu.austral.ingsis.math.functioncomposites.unary.factories.Absolute;
+import edu.austral.ingsis.math.functioncomposites.unary.factories.Parenthesis;
 import edu.austral.ingsis.math.functionleafs.Numeral;
 import org.junit.jupiter.api.Test;
 
