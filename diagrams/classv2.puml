@@ -1,27 +1,27 @@
 @startuml
 interface Visitor {
-    + visit(Number) : void
+    + visit(Numeral) : void
     + visit(Variable) : void
     + visit(UnaryOperation) : void
     + visit(BinaryOperation) : void
 }
 
 class PrintVisitor implements Visitor{
-    + visit(Number) : void
+    + visit(Numeral) : void
     + visit(Variable) : void
     + visit(UnaryOperation) : void
     + visit(BinaryOperation) : void
 }
 
 class GetVariablesVisitor implements Visitor{
-    + visit(Number) : void
+    + visit(Numeral) : void
     + visit(Variable) : void
     + visit(UnaryOperation) : void
     + visit(BinaryOperation) : void
 }
 
 class SetVariableVisitor implements Visitor{
-    + visit(Number) : void
+    + visit(Numeral) : void
     + visit(Variable) : void
     + visit(UnaryOperation) : void
     + visit(BinaryOperation) : void
@@ -101,7 +101,7 @@ interface Value extends Function{
     + getSymbol() : String
 }
 
-class Number implements Value{
+class Numeral implements Value{
     -double value
     + solve() : double
     + getSymbol() : String
